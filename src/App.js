@@ -17,8 +17,6 @@ import AddUser from './pages/AddUser';
 import Home from './pages/Home';
 
 export default class App extends Component {
-
-  
  
   render(){
     const Stack = createStackNavigator();
@@ -26,7 +24,7 @@ export default class App extends Component {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Login" options={{ headerShown: false, title: 'Login' }} component={Login} />
-          <Stack.Screen name="AddUser" options={{ title: '',headerTintColor:'#111e6c',headerStyle:{ backgroundColor:'#f4f4f4'} }} component={AddUser} />
+          <Stack.Screen name="AddUser" options={{ headerShown: false}} component={AddUser} />
           <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>

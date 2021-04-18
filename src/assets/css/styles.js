@@ -2,30 +2,33 @@ import { StyleSheet, Text, View } from "react-native";
 
 
 const styles = StyleSheet.create({
-    viewLogin: {
+    viewContainer: {
       flex:1,
       alignItems:'center',
       backgroundColor: '#111e6c'
+    },
+    viewImage:{
+      flex:1,
+      alignItems:'center',
     },
     card:{
       alignItems:'center',
       backgroundColor: '#fff',
       width: '87%',
-      height: '55%',
-      marginTop: '20%',
+      height: 'auto',
+      marginTop:'5%',
       padding:'7%',
       borderRadius: 10,
       position: "absolute"
     },
-    cardCadastro:{
-      alignItems:'center',
-      backgroundColor: '#fff',
-      width: '87%',
-      height: '90%',
-      marginTop: '5%',
-      padding:'7%',
-      borderRadius: 10,
-      position: "absolute"
+    logo:{
+      width: 150,
+      height:150,
+      marginBottom: 10
+    },
+    logoCadastro:{
+      width: 100,
+      height:100,
     },
     title:{
       fontSize: 40,
@@ -39,12 +42,16 @@ const styles = StyleSheet.create({
       borderBottomWidth: 2,
       marginBottom: 20
     },
+    datePicker:{
+      width: '100%'
+    },  
     viewButton:{
       flex:1,
       alignItems:'center',
       justifyContent:"center",
       backgroundColor :"#111e6c",
-      width: '40%',
+      width: 150,
+      height: 42,
       marginTop: 20,
       borderRadius: 3,
     },
@@ -59,6 +66,10 @@ const styles = StyleSheet.create({
       height: '100%',
       alignItems:'center',
       justifyContent:"center"
+    },
+    cancel:{
+      color: '#111e6c',
+      marginTop: 5,
     }
   });
   

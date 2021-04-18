@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, useColorScheme, View, Button, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Alert, Image,ScrollView } from 'react-native';
 //import { Container, Row, Col, Image, Form, Button, Spinner, Navbar, Card, Alert } from "react-bootstrap";
-import styles from '../../assets/css/styles';
 import DatePicker from 'react-native-datepicker';
+import styles from '../../assets/css/styles';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import api from '../../../config/api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Card from '../../components/Card';
 
 export default class Login extends Component {
 
@@ -23,13 +24,11 @@ export default class Login extends Component {
         password: "",
         confirm_password: "",
         cpf: "",
-        birthday: new Date()
+        birthday: new Date(),
     }
 
-    componentDidMount() { }
-
     handleNameChange = (name) => {
-        this.setState({ name });
+        this.setState({ user: { name: name } });
     }
 
     handleEmailChange = (email) => {
@@ -49,15 +48,15 @@ export default class Login extends Component {
     }
 
     handleBirthdayChange = (birthday) => {
-        this.setState({ birthday});
+        this.setState({ birthday });
     }
 
     addUser = async () => {
-        const { email, password, confirm_password, cpf, birthday,name } = this.state;
-        if (email.length > 0 & password.length > 0 & confirm_password.length > 0 & cpf.length > 0 & birthday.length> 0 & name.length>0) {
+        const { email, password, confirm_password, cpf, birthday, name } = this.state;
+        if (email.length > 0 & password.length > 0 & confirm_password.length > 0 & cpf.length > 0 & birthday.length > 0 & name.length > 0) {
             if (password === confirm_password) {
                 try {
-                    await api.post("/users", { name: name,email: email, password: password, cpf: cpf, birthday: new Date(birthday.split("-")[2]+"-"+birthday.split("-")[1]+"-"+birthday.split("-")[0]) });
+                    await api.post("/users", { name: name, email: email, password: password, cpf: cpf, birthday: new Date(birthday.split("-")[2] + "-" + birthday.split("-")[1] + "-" + birthday.split("-")[0]) });
                     this.props.navigation.navigate('Login');
                 } catch (error) {
                     console.log(error);
@@ -69,28 +68,44 @@ export default class Login extends Component {
         } else {
             Alert.alert("Campos faltantes", "É preciso prencher todos os campos!", [{ text: "OK" }]);
         }
-    }     
+    }
+
+    cancel = () => {
+        this.props.navigation.navigate('Login');
+    }
 
     render() {
-        const { navigation } = this.props;
-        const { name="",email = "", password = "", confirm_password = "", cpf = "", birthday = new Date() } = this.state;
+        const { name = "", email = "", password = "", confirm_password = "", cpf = "", birthday = new Date() } = this.state;
         return (
-            <View style={styles.viewLogin}>
-                <View style={styles.cardCadastro}>
-                    <Text style={styles.title}>Cadastro</Text>
+            <Card>
+                <Image source={require('../../assets/img/Logo_simple.png')} style={styles.logoCadastro} />
+                <KeyboardAwareScrollView
+                    contentContainerStyle={{ flexGrow: 1 }} enableOnAndroid={true}
+                    style={{ flex: 1, width: '100%' }}
+                >
+                    <ScrollView>
                     <TextInput value={name} onChangeText={this.handleNameChange} name="name" style={styles.input} placeholder="Digite seu nome..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
                     <TextInput value={email} onChangeText={this.handleEmailChange} name="email" style={styles.input} placeholder="Digite seu e-mail..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
                     <TextInput value={password} secureTextEntry={true} onChangeText={this.handlePasswordChange} name="password" style={styles.input} placeholder="Digite sua senha..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
                     <TextInput value={confirm_password} secureTextEntry={true} onChangeText={this.handleConfirmPasswordChange} name="password_confirmed" style={styles.input} placeholder="Confirme sua senha..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
                     <TextInput value={cpf} onChangeText={this.handleCpfChange} name="cpf" style={styles.input} placeholder="Digite seu CPF..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
-                    <DatePicker date={birthday} onDateChange={this.handleBirthdayChange} style={{ width: 200 }} format="DD-MM-YYYY" minDate="10-07-1900" maxDate="31-12-2021" />
-                    <TouchableOpacity style={styles.touchOpacity} onPress={this.addUser}>
-                        <View style={styles.viewButton}>
-                            <Text style={styles.textButton}>Cadastrar</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                    <DatePicker
+                        format='DD/MM/YYYY'
+                        style={styles.datePicker}
+                        date={birthday}
+                        onDateChange={this.handleBirthdayChange}
+                    />
+                    </ScrollView>
+                </KeyboardAwareScrollView>
+                <TouchableOpacity style={styles.touchOpacity} onPress={this.addUser}>
+                    <View style={styles.viewButton}>
+                        <Text style={styles.textButton}>Cadastrar</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.touchOpacity} onPress={this.cancel}>
+                    <Text style={styles.cancel}>Já possuo cadastro...</Text>
+                </TouchableOpacity>
+            </Card>
         );
     }
 
