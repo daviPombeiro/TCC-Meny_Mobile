@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, useColorScheme, View, Button, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Text, useColorScheme, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import styles from '../../assets/css/styles';
 import api from '../../../config/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Card from '../../components/Card';
+import Button from '../../components/Button';
 
 export default class Login extends Component {
     constructor(props) {
@@ -62,16 +63,14 @@ export default class Login extends Component {
                 <TouchableOpacity style={styles.touchOpacity} onPress={() => navigation.navigate('ForgetPassword')}>
                     <Text style={styles.cancel}>Esqueceu a sua senha?...</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.handleLogIn}>
-                    <View style={styles.viewButton}>
-                        <Text style={styles.textButton}>Login</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={() => navigation.navigate('AddUser')}>
-                    <View style={styles.viewButton}>
-                        <Text style={styles.textButton}>Cadastrar</Text>
-                    </View>
-                </TouchableOpacity>
+                <Button 
+                    onPress={this.handleLogIn}
+                    title="Login"
+                />
+                <Button 
+                    onPress={() => navigation.navigate('AddUser')}
+                    title="Cadastrar"
+                />
             </Card>
         );
     }

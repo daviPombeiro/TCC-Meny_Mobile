@@ -6,6 +6,7 @@ import styles from '../../assets/css/styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import api from '../../../config/api';
 import Card from '../../components/Card';
+import Button from '../../components/Button';
 
 export default class Login extends Component {
 
@@ -103,11 +104,10 @@ export default class Login extends Component {
                     />
                     </ScrollView>
                 </KeyboardAwareScrollView>
-                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.addUser}>
-                    <View style={styles.viewButton}>
-                        <Text style={styles.textButton}>Cadastrar</Text>
-                    </View>
-                </TouchableOpacity>
+                <Button 
+                    onPress={this.addUser}
+                    title="Cadastrar"
+                />
                 <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.cancel}>
                     <Text style={styles.cancel}>Já possuo cadastro...</Text>
                 </TouchableOpacity>
