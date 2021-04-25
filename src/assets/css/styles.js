@@ -55,6 +55,17 @@ const styles = StyleSheet.create({
       marginTop: 20,
       borderRadius: 3,
     },
+    viewButtonForgetPassword:{
+      flex:1,
+      alignItems:'center',
+      justifyContent:"center",
+      backgroundColor :"#111e6c",
+      width: 150,
+      height: 42,
+      marginBottom: 10,
+      marginTop: 20,
+      borderRadius: 3,
+    },
     textButton:{
       color:'#fff',
       fontSize: 15,

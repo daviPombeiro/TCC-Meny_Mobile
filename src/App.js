@@ -15,6 +15,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from  './pages/Login';
 import AddUser from './pages/AddUser';
 import Home from './pages/Home';
+import ForgetPassword from './pages/ForgetPassword';
 
 export default class App extends Component {
  
@@ -25,6 +26,7 @@ export default class App extends Component {
         <Stack.Navigator>
           <Stack.Screen name="Login" options={{ headerShown: false, title: 'Login' }} component={Login} />
           <Stack.Screen name="AddUser" options={{ headerShown: false}} component={AddUser} />
+          <Stack.Screen name="ForgetPassword" options={{ headerShown: false}} component={ForgetPassword} />
           <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>

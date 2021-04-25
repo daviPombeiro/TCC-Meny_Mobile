@@ -28,7 +28,7 @@ export default class Login extends Component {
     }
 
     handleNameChange = (name) => {
-        this.setState({ user: { name: name } });
+        this.setState({  name: name });
     }
 
     handleEmailChange = (email) => {
@@ -56,8 +56,14 @@ export default class Login extends Component {
         if (email.length > 0 & password.length > 0 & confirm_password.length > 0 & cpf.length > 0 & birthday.length > 0 & name.length > 0) {
             if (password === confirm_password) {
                 try {
-                    await api.post("/users", { name: name, email: email, password: password, cpf: cpf, birthday: new Date(birthday.split("-")[2] + "-" + birthday.split("-")[1] + "-" + birthday.split("-")[0]) });
-                    this.props.navigation.navigate('Login');
+                    await api.post("/users", { name: name, email: email, password: password, cpf: cpf, birthday: new Date(birthday.split("-")[2] + "-" + birthday.split("-")[1] + "-" + birthday.split("-")[0]) })
+                    .then(()=>{
+                        this.props.navigation.navigate('Login');
+                    })
+                    .catch(() =>{
+                        Alert.alert("Cadastro incorreto", "Ocorreu um erro durante o cadastro tende mais tarde!", [{ text: "OK" }]);
+                    })
+                    
                 } catch (error) {
                     console.log(error);
                     Alert.alert("Cadastro incorreto", "Ocorreu um erro durante o cadastro tende mais tarde!", [{ text: "OK" }]);
