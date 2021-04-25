@@ -62,12 +62,12 @@ export default class Login extends Component {
                 <TouchableOpacity style={styles.touchOpacity} onPress={() => navigation.navigate('ForgetPassword')}>
                     <Text style={styles.cancel}>Esqueceu a sua senha?...</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} onPress={this.handleLogIn}>
+                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.handleLogIn}>
                     <View style={styles.viewButton}>
                         <Text style={styles.textButton}>Login</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} onPress={() => navigation.navigate('AddUser')}>
+                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={() => navigation.navigate('AddUser')}>
                     <View style={styles.viewButton}>
                         <Text style={styles.textButton}>Cadastrar</Text>
                     </View>

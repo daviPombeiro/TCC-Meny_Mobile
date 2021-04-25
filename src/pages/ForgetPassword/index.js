@@ -45,10 +45,10 @@ export default class ForgetPassword extends Component {
                         <Text style={styles.textButton}>Solicitar</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} onPress={this.handleLogIn}>
+                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.handleLogIn}>
                     <Text style={styles.cancel}>Lembrei minha senha</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} onPress={() => navigation.navigate('AddUser')}>
+                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={() => navigation.navigate('AddUser')}>
                     <Text style={styles.cancel}>Não possui um cadastro?...</Text>
                 </TouchableOpacity>
             </Card>

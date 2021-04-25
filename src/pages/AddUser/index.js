@@ -103,12 +103,12 @@ export default class Login extends Component {
                     />
                     </ScrollView>
                 </KeyboardAwareScrollView>
-                <TouchableOpacity style={styles.touchOpacity} onPress={this.addUser}>
+                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.addUser}>
                     <View style={styles.viewButton}>
                         <Text style={styles.textButton}>Cadastrar</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} onPress={this.cancel}>
+                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.cancel}>
                     <Text style={styles.cancel}>Já possuo cadastro...</Text>
                 </TouchableOpacity>
             </Card>
