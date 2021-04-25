@@ -5,6 +5,7 @@ import api from '../../../config/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
+import OptionsText from '../../components/OptionsText';
 
 export default class Login extends Component {
     constructor(props) {
@@ -60,9 +61,10 @@ export default class Login extends Component {
                 <Image source={require('../../assets/img/Logo_simple.png')} style={styles.logo} />
                 <TextInput value={email} onChangeText={this.handleEmailChange} style={styles.input} placeholder="Digite seu e-mail..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
                 <TextInput value={password} secureTextEntry={true} onChangeText={this.handlePasswordChange} style={styles.input} placeholder="Digite sua senha..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
-                <TouchableOpacity style={styles.touchOpacity} onPress={() => navigation.navigate('ForgetPassword')}>
-                    <Text style={styles.cancel}>Esqueceu a sua senha?...</Text>
-                </TouchableOpacity>
+                <OptionsText 
+                    title="Esqueceu a sua senha?..."
+                    onPress={() => navigation.navigate('ForgetPassword')}
+                />
                 <Button 
                     onPress={this.handleLogIn}
                     title="Login"

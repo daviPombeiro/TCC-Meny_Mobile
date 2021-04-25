@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, useColorScheme, View, Button, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Text, useColorScheme, View, StyleSheet, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import styles from '../../assets/css/styles';
 import Card from '../../components/Card';
+import OptionsText from '../../components/OptionsText';
 
 export default class ForgetPassword extends Component {
     constructor(props) {
@@ -41,20 +42,35 @@ export default class ForgetPassword extends Component {
                 <Image source={require('../../assets/img/Logo_simple.png')} style={styles.logo} />
                 <TextInput value={email} onChangeText={this.handleEmailChange} style={styles.input} placeholder="Digite seu e-mail..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
                 <TouchableOpacity style={styles.touchOpacity} onPress={() => navigation.navigate('AddUser')}>
-                    <View style={styles.viewButtonForgetPassword}>
+                    <View style={styleLocal.viewButton}>
                         <Text style={styles.textButton}>Solicitar</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.handleLogIn}>
-                    <Text style={styles.cancel}>Lembrei minha senha</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={() => navigation.navigate('AddUser')}>
-                    <Text style={styles.cancel}>Não possui um cadastro?...</Text>
-                </TouchableOpacity>
+                <OptionsText 
+                    title="Lembrei minha senha"
+                    onPress={this.handleLogIn}
+                />
+                <OptionsText 
+                    title="Não possui um cadastro?..."
+                    onPress={() => navigation.navigate('AddUser')}
+                />
             </Card>
         );
     }
 
 }
 
+const styleLocal = StyleSheet.create({
+    viewButton:{
+        flex:1,
+        alignItems:'center',
+        justifyContent:"center",
+        backgroundColor :"#111e6c",
+        width: 150,
+        height: 42,
+        marginBottom: 10,
+        marginTop: 20,
+        borderRadius: 3,
+    }
+})
 

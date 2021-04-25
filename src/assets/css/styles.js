@@ -26,10 +26,6 @@ const styles = StyleSheet.create({
       height:150,
       marginBottom: 10
     },
-    logoCadastro:{
-      width: 100,
-      height:100,
-    },
     title:{
       fontSize: 40,
       color:'#111e6c',
@@ -55,17 +51,6 @@ const styles = StyleSheet.create({
       marginTop: 20,
       borderRadius: 3,
     },
-    viewButtonForgetPassword:{
-      flex:1,
-      alignItems:'center',
-      justifyContent:"center",
-      backgroundColor :"#111e6c",
-      width: 150,
-      height: 42,
-      marginBottom: 10,
-      marginTop: 20,
-      borderRadius: 3,
-    },
     textButton:{
       color:'#fff',
       fontSize: 15,
@@ -78,7 +63,7 @@ const styles = StyleSheet.create({
       alignItems:'center',
       justifyContent:"center"
     },
-    cancel:{
+    optionsText:{
       color: '#111e6c',
       marginTop: 5,
     }

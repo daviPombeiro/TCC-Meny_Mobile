@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Alert, Image,ScrollView } from 'react-native';
-//import { Container, Row, Col, Image, Form, Button, Spinner, Navbar, Card, Alert } from "react-bootstrap";
+import { TextInput,Alert, Image,ScrollView,StyleSheet } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import styles from '../../assets/css/styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import api from '../../../config/api';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
+import OptionsText from '../../components/OptionsText';
 
 export default class Login extends Component {
 
@@ -85,7 +85,7 @@ export default class Login extends Component {
         const { name = "", email = "", password = "", confirm_password = "", cpf = "", birthday = new Date() } = this.state;
         return (
             <Card>
-                <Image source={require('../../assets/img/Logo_simple.png')} style={styles.logoCadastro} />
+                <Image source={require('../../assets/img/Logo_simple.png')} style={styleLocal.logo} />
                 <KeyboardAwareScrollView
                     contentContainerStyle={{ flexGrow: 1 }} enableOnAndroid={true}
                     style={{ flex: 1, width: '100%' }}
@@ -108,13 +108,20 @@ export default class Login extends Component {
                     onPress={this.addUser}
                     title="Cadastrar"
                 />
-                <TouchableOpacity style={styles.touchOpacity} activeOpacity={0.8} onPress={this.cancel}>
-                    <Text style={styles.cancel}>Já possuo cadastro...</Text>
-                </TouchableOpacity>
+                <OptionsText 
+                    title="Já possuo cadastro..."
+                    onPress={this.cancel}
+                />
             </Card>
         );
     }
 
 }
 
+const styleLocal = StyleSheet.create({
+    logo:{
+        width: 100,
+        height:100,
+      }
+})
 
