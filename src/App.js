@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -22,9 +23,9 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="QRReader" options={{ headerShown: false, title: 'QR Reader' }} component={QRReader} />
           <Stack.Screen name="Login" options={{ headerShown: false, title: 'Login' }} component={Login} />
           <Stack.Screen name="AddUser" options={{ title: 'Add User' }} component={AddUser} />
-          <Stack.Screen name="QRReader" options={{ headerShown: false, title: 'QR Reader' }} component={QRReader} />
           <Stack.Screen name="Menu" options={{ headerShown: false, title: 'Menu' }} component={Menu} />
         </Stack.Navigator>
       </NavigationContainer>
