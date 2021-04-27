@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput,Alert, Image,ScrollView,StyleSheet } from 'react-native';
+import { TextInput,Alert, Image,ScrollView,StyleSheet,Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import styles from '../../assets/css/styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -57,11 +57,12 @@ export default class Login extends Component {
         if (email.length > 0 & password.length > 0 & confirm_password.length > 0 & cpf.length > 0 & birthday.length > 0 & name.length > 0) {
             if (password === confirm_password) {
                 try {
-                    await api.post("/users", { name: name, email: email, password: password, cpf: cpf, birthday: new Date(birthday.split("-")[2] + "-" + birthday.split("-")[1] + "-" + birthday.split("-")[0]) })
+                    await api.post("/users", { name: name, email: email, password: password, cpf: cpf, birthday: new Date(birthday.split("/")[2] + "-" + birthday.split("/")[1] + "-" + birthday.split("/")[0]) })
                     .then(()=>{
                         this.props.navigation.navigate('Login');
                     })
                     .catch(() =>{
+                        console.log(birthday);
                         Alert.alert("Cadastro incorreto", "Ocorreu um erro durante o cadastro tende mais tarde!", [{ text: "OK" }]);
                     })
                     
@@ -96,6 +97,7 @@ export default class Login extends Component {
                     <TextInput value={password} secureTextEntry={true} onChangeText={this.handlePasswordChange} name="password" style={styles.input} placeholder="Digite sua senha..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
                     <TextInput value={confirm_password} secureTextEntry={true} onChangeText={this.handleConfirmPasswordChange} name="password_confirmed" style={styles.input} placeholder="Confirme sua senha..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
                     <TextInput value={cpf} onChangeText={this.handleCpfChange} name="cpf" style={styles.input} placeholder="Digite seu CPF..." placeholderTextColor="#111e6c" placeholderTextColor="#ccc" autoCapitalize='none' />
+                    <Text style={styles.optionsText}>Selecione a sua data de nascimento:</Text>
                     <DatePicker
                         format='DD/MM/YYYY'
                         style={styles.datePicker}
@@ -120,8 +122,8 @@ export default class Login extends Component {
 
 const styleLocal = StyleSheet.create({
     logo:{
-        width: 100,
-        height:100,
+        width: 80,
+        height:80,
       }
 })
 

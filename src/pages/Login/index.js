@@ -43,7 +43,7 @@ export default class Login extends Component {
             try {
                 const response = await api.post("/login", { email: email, password: password });
                 await AsyncStorage.setItem('@token', response.data.token);
-                this.props.navigation.navigate('Home');
+                this.props.navigation.navigate('QRReader');
             } catch (error) {
                 console.log(error);
                 Alert.alert("Login incorreto", "Login inserido incorreto ou inexistente!", [{ text: "OK" }]);

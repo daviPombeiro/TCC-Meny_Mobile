@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
-import axios from "axios";
+import api from '../../../config/api';
 import styles from '../../assets/css/styles';
 
 export default class Menu extends Component {
@@ -13,7 +13,7 @@ export default class Menu extends Component {
 
     async componentDidMount() {
         const cod = this.state.url.split('/').pop();
-        const res = await axios.get(`http://192.168.18.49:3000/restaurant/${cod}`);
+        const res = await api.get(`/restaurant/${cod}`);
         this.setState({
             name: res.data.name,
             menu: res.data.menu
