@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
-import api from '../../../config/api';
+import api from '../../config/api';
 import styles from '../../assets/css/styles';
 
 export default class Menu extends Component {

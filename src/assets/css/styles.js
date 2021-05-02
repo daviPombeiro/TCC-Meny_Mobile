@@ -68,6 +68,10 @@ const styles = StyleSheet.create({
       color: '#111e6c',
       marginTop: 5,
     },
+    incorretValues: {
+      color: '#cc0000',
+      fontSize: 12,
+    },
   
     /*LEITOR DE QR CODE*/
     qrCodeText: {

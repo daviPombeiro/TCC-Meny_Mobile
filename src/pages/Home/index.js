@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class Home extends Component {
     
+    componentDidMount(){
+        if(!AsyncStorage.getItem('@token')){
+            this.props.navigation.navigate('Login');
+        }
+    }
+
     render() {
         return (
             <View>
