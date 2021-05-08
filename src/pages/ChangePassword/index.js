@@ -13,14 +13,6 @@ const Form = (props) => (
     <Card>
         <Image source={require('../../assets/img/Logo_simple.png')} style={styles.logo} />
         <TextInput
-            value={props.values.email}
-            onChangeText={text => props.setFieldValue('email', text)}
-            style={styles.input}
-            placeholder="Digite seu e-mail..."
-            autoCapitalize='none'
-        />
-        {props.touched.email && props.errors.email && <Text style={styles.incorretValues}>{props.errors.email}</Text>}
-        <TextInput
             value={props.values.password}
             secureTextEntry={true}
             onChangeText={text => props.setFieldValue('password', text)}
@@ -29,17 +21,22 @@ const Form = (props) => (
             autoCapitalize='none'
         />
         {props.touched.password && props.errors.password && <Text style={styles.incorretValues}>{props.errors.password}</Text>}
+        <TextInput
+            value={props.values.password_confirmed}
+            secureTextEntry={true}
+            onChangeText={text => props.setFieldValue('password_confirmed', text)}
+            style={styles.input}
+            placeholder="Confirme a sua senha..."
+            autoCapitalize='none'
+        />
+        {props.touched.password_confirmed && props.errors.password_confirmed && <Text style={styles.incorretValues}>{props.errors.password_confirmed}</Text>}
         <OptionsText
-            title="Esqueceu a sua senha?..."
-            onPress={() => props.navigation.navigate('ForgetPassword')}
+            title="Lembrou sua senha?..."
+            onPress={() => props.navigation.navigate('Login')}
         />
         <Button
             onPress={props.handleSubmit}
-            title="Login"
-        />
-        <Button
-            onPress={() => props.navigation.navigate('AddUser')}
-            title="Cadastrar"
+            title="Trocar senha"
         />
     </Card>
 
@@ -47,27 +44,30 @@ const Form = (props) => (
 );
 
 export default withFormik({
-    mapPropsToValues: () => ({ email: '', password: '' }),
+    mapPropsToValues: () => ({ password_confirmed: '', password: '', email: AsyncStorage.getItem('@email') }),
 
     validationSchema: Yup.object().shape({
-        email: Yup.string()
-            .email('Digite um e-mail válido')
-            .required('Preencha o campo de e-mail'),
         password: Yup.string()
             .min(6, 'A senha deve ter no mínimo 6 caracteres')
             .required('Preencha o campo de senha'),
+        password_confirmed: Yup.string()
+            .oneOf([Yup.ref('password')], 'Senha e confirmar senhas estão diferentes')
+            .required('Preencha o campo de confirmar senha'),
     }),
 
 
-    handleSubmit: async (values, formikBag) => {
+    handleSubmit: async (values,formikBag) => {
         try {
-            const response = await api.post("/login", values);
-            await AsyncStorage.setItem('@token', response.data.token);
-            formikBag.props.navigation.navigate('QRReader')
+            await api.post("/change_password", values)
+            .then(
+                formikBag .props.navigation.navigate('Login')
+            );
+            
         } catch (error) {
             console.log(error);
-            Alert.alert("Login incorreto", "Login inserido incorreto ou inexistente!", [{ text: "OK" }]);
+            Alert.alert("Ocorreu um problema", "Ocorreu um problema na troca da senha tente novamente", [{ text: "OK" }]);
         }
+
     }
 })(Form);
 

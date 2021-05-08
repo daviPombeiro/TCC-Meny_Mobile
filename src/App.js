@@ -17,6 +17,8 @@ import Home from './pages/Home';
 import ForgetPassword from './pages/ForgetPassword';
 import QRReader from './pages/QRReader';
 import Menu from './pages/Menu';
+import PutToken from './pages/PutPasswordToken';
+import ChangePassword from './pages/ChangePassword';
 
 export default class App extends Component {
   render() {
@@ -24,12 +26,13 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          
-          <Stack.Screen name="Login" options={{ headerShown: false, title: 'Login' }} component={Login} />
           <Stack.Screen name="QRReader" options={{ headerShown: false, title: 'QR Reader' }} component={QRReader} />
+          <Stack.Screen name="Login" options={{ headerShown: false, title: 'Login' }} component={Login} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="AddUser" options={{ headerShown: false }} component={AddUser} />
+          <Stack.Screen name="ChangePassword" options={{ headerShown: false }} component={ChangePassword} />
           <Stack.Screen name="ForgetPassword" options={{ headerShown: false }} component={ForgetPassword} />
+          <Stack.Screen name="PutToken" options={{ headerShown: false }} component={PutToken} />
           <Stack.Screen name="Menu" options={{ headerShown: false, title: 'Menu' }} component={Menu} />
         </Stack.Navigator>
       </NavigationContainer>
