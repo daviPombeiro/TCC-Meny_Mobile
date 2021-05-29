@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 import { StyleSheet, Text, View } from "react-native";
+=======
+/* eslint-disable prettier/prettier */
+import { StyleSheet } from "react-native";
+>>>>>>> Stashed changes
 
 
 const styles = StyleSheet.create({
@@ -66,6 +71,58 @@ const styles = StyleSheet.create({
     optionsText:{
       color: '#111e6c',
       marginTop: 5,
+<<<<<<< Updated upstream
+=======
+    },
+    incorretValues: {
+      color: '#cc0000',
+      fontSize: 12,
+    },
+  
+    /*LEITOR DE QR CODE*/
+    qrCodeText: {
+      flex: 1,
+      fontSize: 18,
+      padding: 32,
+      color: '#777'
+    },
+    /*MENU DO RESTAURANTE*/
+    menuHeader: {
+      width: '100%',
+      alignItems: "center",
+      paddingTop: 10,
+      paddingBottom: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: "#3057CC"
+    },
+    menuRestaurant: {
+      fontSize: 25,
+      fontWeight: "bold"
+    },
+    menuSectionHeader: {
+      width: '100%',
+      padding: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: "#DEDEDE"
+    },
+    menuSectionTitle: {
+      fontSize: 20,
+      fontWeight: "bold",
+      color: "#3057CC"
+    },
+    menuItemContainer: {
+      maxWidth: "100%",
+      padding: 10,
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      borderBottomWidth: 1,
+      borderBottomColor: "#DEDEDE"
+    },
+    menuItemTitle: {
+      fontSize: 18,
+      fontWeight: "bold"
+>>>>>>> Stashed changes
     }
   });
   

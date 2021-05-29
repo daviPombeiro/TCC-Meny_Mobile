@@ -8,7 +8,76 @@ import Card from '../../components/Card';
 import Button from '../../components/Button';
 import OptionsText from '../../components/OptionsText';
 
+<<<<<<< Updated upstream
 export default class Login extends Component {
+=======
+const Form = (props) => (
+    <Card>
+        <Image source={require('../../assets/img/Logo_simple.png')} style={styleLocal.logo} />
+        <TextInput
+            value={props.values.name}
+            onChangeText={text => props.setFieldValue('name', text)}
+            name="name"
+            style={styles.input}
+            placeholder="Digite seu nome..."
+            autoCapitalize='none'
+        />
+        {props.touched.name && props.errors.name && <Text style={styles.incorretValues}>{props.errors.name}</Text>}
+        <TextInput
+            value={props.values.email}
+            onChangeText={text => props.setFieldValue('email', text)}
+            name="email"
+            style={styles.input}
+            placeholder="Digite seu e-mail..."
+            autoCapitalize='none'
+        />
+        {props.touched.email && props.errors.email && <Text style={styles.incorretValues}>{props.errors.email}</Text>}
+        <TextInput
+            value={props.values.password}
+            onChangeText={text => props.setFieldValue('password', text)}
+            name="password"
+            style={styles.input}
+            placeholder="Digite sua senha..."
+            autoCapitalize='none'
+            secureTextEntry={true}
+        />
+        {props.touched.password && props.errors.password && <Text style={styles.incorretValues}>{props.errors.password}</Text>}
+        <TextInput
+            value={props.values.password_confirmed}
+            onChangeText={text => props.setFieldValue('password_confirmed', text)}
+            name="password_confirmed"
+            style={styles.input}
+            placeholder="Confirme sua senha..."
+            autoCapitalize='none'
+            secureTextEntry={true}
+        />
+        {props.touched.password_confirmed && props.errors.password_confirmed && <Text style={styles.incorretValues}>{props.errors.password_confirmed}</Text>}
+        <TextInput
+            value={props.values.cpf}
+            onChangeText={text => props.setFieldValue('cpf', text)}
+            name="cpf"
+            style={styles.input}
+            placeholder="Digite seu CPF..."
+            autoCapitalize='none'
+        />
+        {props.touched.cpf && props.errors.cpf && <Text style={styles.incorretValues}>{props.errors.cpf}</Text>}
+        <DatePicker
+            format='DD/MM/YYYY'
+            style={styles.datePicker}
+            date={props.values.birthday}
+            onDateChange={text => props.setFieldValue('birthday', text)}
+        />
+        {props.touched.birthday && props.errors.birthday && <Text style={styles.incorretValues}>{props.errors.birthday}</Text>}
+        <Button
+            style={styles.viewButton}
+            onPress={props.handleSubmit}
+            title="Cadastrar"
+        />
+        <OptionsText
+            title="Já possuo cadastro..."
+            onPress={() => props.navigation.navigate('Login')}
+        />
+>>>>>>> Stashed changes
 
     constructor(props) {
         super(props);
