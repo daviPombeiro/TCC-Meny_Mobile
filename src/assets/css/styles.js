@@ -113,6 +113,13 @@ const styles = StyleSheet.create({
     menuItemTitle: {
       fontSize: 18,
       fontWeight: "bold"
+    },
+    menuItemContainerSelected: {
+      backgroundColor: "#3057CC"
+    },
+    menuItemTitleSelected: {
+      fontSize: 18,
+      fontWeight: "bold"
     }
   });
   

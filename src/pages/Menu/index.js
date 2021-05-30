@@ -3,12 +3,18 @@ import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 import api from '../../../config/api';
 import styles from '../../assets/css/styles';
+import MenuItem from '../../components/MenuItem';
 
 export default class Menu extends Component {
+    constructor(props){
+        super(props);
+        this.registerItems = this.registerItems.bind(this);
+    }
     state = {
         url: this.props.route.params.menuURL,
         name: "",
-        menu: []
+        menu: [],
+        selectedItems: []
     }
 
     async componentDidMount() {
@@ -18,6 +24,15 @@ export default class Menu extends Component {
             name: res.data.name,
             menu: res.data.menu
         });
+    }
+
+    registerItems = (id) => {
+        let ar = this.state.selectedItems;
+        if(ar.includes(id)){
+            ar.splice(ar.indexOf(id), 1);
+        } else {
+            ar.push(id);
+        }
     }
 
     render() {
@@ -33,21 +48,8 @@ export default class Menu extends Component {
                                 <Text style={styles.menuSectionTitle}>{section.name}</Text>
                             </View>
                             {section.items.map(item => {
-                                return(
-                                    <View id={item._id} style={styles.menuItemContainer}>
-                                        <View style={{width: "70%", padding: 10}}>
-                                            <Text style={styles.menuItemTitle}>{item.name}</Text>
-                                            <Text>{item.description}</Text>
-                                            <Text style={{fontWeight: "bold"}}>R${item.price}</Text>
-                                        </View>
-                                        <View style={{width: "30%", alignSelf: "center"}}>
-                                            <Image
-                                                source={{uri: item.image}}
-                                                style={{width: 100, height: 100}}
-                                            />
-                                        </View>
-                                    </View>
-                                )
+                                item.func = this.registerItems;
+                                return <MenuItem item={item} />
                             })}
                         </View>
                     )
