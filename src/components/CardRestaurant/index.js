@@ -113,7 +113,7 @@ export default function CardRestaurant(props) {
                             <Text style={styleLocal.category}>7,2 km</Text>
                         </View>
                         <View style={styleLocal.row}>
-                            {props.closeHour >= new Date().getHours() <= props.openHour ?
+                            {props.openHour < new Date().getHours() < props.closeHour ?
                                 <>
                                     <Text style={styleLocal.category, { color: "#2CDE70", fontSize: 11 }}>Aberto</Text>
                                     <Text style={styleLocal.category}>{"até as " + (props.closeHour) + " h"}</Text>

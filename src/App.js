@@ -27,8 +27,8 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="SearchRestaurant" options={{ headerShown: false, title: 'SearchRestaurant' }} component={SearchRestaurant} />
           <Stack.Screen name="Login" options={{ headerShown: false, title: 'Login' }} component={Login} />
+          <Stack.Screen name="SearchRestaurant" options={{ headerShown: false, title: 'SearchRestaurant' }} component={SearchRestaurant} />
           <Stack.Screen name="QRReader" options={{ headerShown: false, title: 'QR Reader' }} component={QRReader} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="AddUser" options={{ headerShown: false }} component={AddUser} />
