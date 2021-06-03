@@ -44,7 +44,7 @@ const Form = (props) => (
 );
 
 export default withFormik({
-    mapPropsToValues: () => ({ password_confirmed: '', password: '', email: AsyncStorage.getItem('@email') }),
+    mapPropsToValues: () => ({ password_confirmed: '', password: '' }),
 
     validationSchema: Yup.object().shape({
         password: Yup.string()
@@ -58,6 +58,7 @@ export default withFormik({
 
     handleSubmit: async (values,formikBag) => {
         try {
+            values.email = await AsyncStorage.getItem('@email');
             await api.post("/change_password", values)
             .then(
                 formikBag .props.navigation.navigate('Login')

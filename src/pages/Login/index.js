@@ -63,7 +63,7 @@ export default withFormik({
         try {
             const response = await api.post("/login", values);
             await AsyncStorage.setItem('@token', response.data.token);
-            formikBag.props.navigation.navigate('QRReader')
+            formikBag.props.navigation.navigate('SearchRestaurant');
         } catch (error) {
             console.log(error);
             Alert.alert("Login incorreto", "Login inserido incorreto ou inexistente!", [{ text: "OK" }]);
