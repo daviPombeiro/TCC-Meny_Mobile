@@ -16,7 +16,7 @@ export default class MenuItem extends React.Component {
     handleClick = () =>{
         if(this.state.backColor == "transparent"){
             this.setState({
-                backColor: "#111e6c",
+                backColor: "#3057CC",
                 textColor: "white"
             });
         } else {
@@ -25,7 +25,7 @@ export default class MenuItem extends React.Component {
                 textColor: "black"
             });
         }
-        this.state.item.func(this.state.item._id);
+        this.state.item.func(this.state.item);
     }
 
     render() {

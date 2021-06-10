@@ -114,12 +114,19 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: "bold"
     },
-    menuItemContainerSelected: {
-      backgroundColor: "#3057CC"
+    makeOrderButton: {
+      backgroundColor: "#3057CC",
+      width: "100%",
+      alignItems: "center",
+      padding: 10,
+      position: "absolute",
+      bottom: 0,
+      left: 0
     },
-    menuItemTitleSelected: {
-      fontSize: 18,
-      fontWeight: "bold"
+    makeOrderButtonText: {
+      color: "white",
+      fontWeight: "bold",
+      fontSize: 25,
     }
   });
   
