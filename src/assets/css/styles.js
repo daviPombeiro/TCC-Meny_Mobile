@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#3057CC",
       width: "100%",
       alignItems: "center",
-      padding: 10,
+      padding: 10
     },
     makeOrderButtonText: {
       color: "white",

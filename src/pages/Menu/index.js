@@ -68,7 +68,7 @@ export default class Menu extends Component {
     closeOrder = () => {
         this.props.navigation.push('CloseOrder', {
             orderId: this.state.orderId,
-            tableId: this.state.url.split('/').pop()
+            url: this.state.url
         });
     }
 
