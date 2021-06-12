@@ -1,17 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, TextInput } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../../config/api';
 import styles from '../../assets/css/styles';
 
 export default class Menu extends Component {
     constructor(props){
         super(props);
+        this.makeOrder = this.makeOrder.bind(this);
     }
     state = {
         items: this.props.route.params.selectedItems,
         restaurantName: this.props.route.params.restaurantName,
+        url: this.props.route.params.url,
         total: 0
     }
 
@@ -21,6 +23,27 @@ export default class Menu extends Component {
             tot += item.price;
         });
         this.setState({total: tot});
+    }
+
+    async makeOrder() {
+        let itemsId = this.state.items.map(item => {
+            return item._id;
+        });
+
+        let table = this.state.url.split("/").pop();
+        let data = {
+            total: this.state.total,
+            items: itemsId
+        }
+        const res = await api.post(`/order/${table}`, data, {
+            headers: {
+                "Authorization": "Bearer " + await AsyncStorage.getItem('@token')
+            }
+        });
+
+        this.props.navigation.push('Menu', {
+            menuURL: this.state.url
+        });
     }
 
     render() {

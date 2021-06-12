@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../../config/api';
 import styles from '../../assets/css/styles';
 import MenuItem from '../../components/MenuItem';
@@ -15,16 +16,24 @@ export default class Menu extends Component {
         url: this.props.route.params.menuURL,
         name: "",
         menu: [],
+        active: false,
         selectedItems: [],
         OrderButton: false
     }
 
     async componentDidMount() {
         const cod = this.state.url.split('/').splice(3, 1);
+        const table = this.state.url.split('/').pop();
         const res = await api.get(`/restaurant/${cod}`);
+        const active = await api.get(`/table/${table}`,{
+            headers: {
+                "Authorization": "Bearer " + await AsyncStorage.getItem('@token')
+            }
+        });
         this.setState({
             name: res.data.name,
-            menu: res.data.menu
+            menu: res.data.menu,
+            active: active.data
         });
     }
 
@@ -40,10 +49,21 @@ export default class Menu extends Component {
     }
 
     makeOrder = () => {
-        this.props.navigation.navigate('MakeOrder', {
-            selectedItems: this.state.selectedItems,
-            restaurantName: this.state.name
+        let items = this.state.selectedItems;
+
+        for(let i = 0; i < items.length; i++){
+            delete items[i].func;
+        }
+        
+        this.props.navigation.push('MakeOrder', {
+            selectedItems: items,
+            restaurantName: this.state.name,
+            url: this.state.url
         });
+    }
+
+    closeOrder = () => {
+
     }
 
     render() {
@@ -54,7 +74,7 @@ export default class Menu extends Component {
                 </View>
                 {this.state.menu.map(section => {
                     return(
-                        <View>
+                        <View key={section.name}>
                             <View id={section.name + "_id"} style={styles.menuSectionHeader}>
                                 <Text style={styles.menuSectionTitle}>{section.name}</Text>
                             </View>
@@ -65,16 +85,28 @@ export default class Menu extends Component {
                         </View>
                     )
                 })}
-                {this.state.OrderButton ?
-                    <TouchableOpacity
-                        style={styles.makeOrderButton}
-                        onPress={this.makeOrder}
-                    >
-                        <Text style={styles.makeOrderButtonText}>Fazer pedido</Text>
-                    </TouchableOpacity>
-                    :
-                    null
-                }
+                <View style={styles.OrderOptions}>
+                    {this.state.OrderButton ?
+                        <TouchableOpacity
+                            style={styles.makeOrderButton}
+                            onPress={this.makeOrder}
+                        >
+                            <Text style={styles.makeOrderButtonText}>Fazer pedido</Text>
+                        </TouchableOpacity>
+                        :
+                        null
+                    }
+                    {this.state.active ?
+                        <TouchableOpacity
+                            style={styles.closeOrderButton}
+                            onPress={this.makeOrder}
+                        >
+                            <Text style={styles.closeOrderButtonText}>Fechar conta</Text>
+                        </TouchableOpacity>
+                        :
+                        null
+                    }
+                </View>
             </View>
         );
     }

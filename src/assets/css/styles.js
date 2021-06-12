@@ -114,19 +114,33 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: "bold"
     },
+    OrderOptions: {
+      width: "100%",
+      position: "absolute",
+      bottom: 0,
+      left: 0
+    },
     makeOrderButton: {
       backgroundColor: "#3057CC",
       width: "100%",
       alignItems: "center",
       padding: 10,
-      position: "absolute",
-      bottom: 0,
-      left: 0
     },
     makeOrderButtonText: {
       color: "white",
       fontWeight: "bold",
       fontSize: 25,
+    },
+    closeOrderButton: {
+      backgroundColor: "red",
+      width: "100%",
+      alignItems: "center",
+      padding: 5
+    },
+    closeOrderButtonText: {
+      color: "white",
+      fontWeight: "bold",
+      fontSize: 15,
     }
   });
   
