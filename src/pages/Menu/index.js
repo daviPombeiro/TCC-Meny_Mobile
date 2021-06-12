@@ -11,6 +11,7 @@ export default class Menu extends Component {
         super(props);
         this.registerItems = this.registerItems.bind(this);
         this.makeOrder = this.makeOrder.bind(this);
+        this.closeOrder = this.closeOrder.bind(this);
     }
     state = {
         url: this.props.route.params.menuURL,
@@ -18,14 +19,15 @@ export default class Menu extends Component {
         menu: [],
         active: false,
         selectedItems: [],
-        OrderButton: false
+        OrderButton: false,
+        orderId: this.props.route.params.orderId
     }
 
     async componentDidMount() {
         const cod = this.state.url.split('/').splice(3, 1);
-        const table = this.state.url.split('/').pop();
+        const tableId = this.state.url.split('/').pop();
         const res = await api.get(`/restaurant/${cod}`);
-        const active = await api.get(`/table/${table}`,{
+        const table = await api.get(`/table/${tableId}`,{
             headers: {
                 "Authorization": "Bearer " + await AsyncStorage.getItem('@token')
             }
@@ -33,7 +35,8 @@ export default class Menu extends Component {
         this.setState({
             name: res.data.name,
             menu: res.data.menu,
-            active: active.data
+            active: table.data.active,
+            orderId: table.data.order
         });
     }
 
@@ -63,7 +66,10 @@ export default class Menu extends Component {
     }
 
     closeOrder = () => {
-
+        this.props.navigation.push('CloseOrder', {
+            orderId: this.state.orderId,
+            tableId: this.state.url.split('/').pop()
+        });
     }
 
     render() {
@@ -99,9 +105,9 @@ export default class Menu extends Component {
                     {this.state.active ?
                         <TouchableOpacity
                             style={styles.closeOrderButton}
-                            onPress={this.makeOrder}
+                            onPress={this.closeOrder}
                         >
-                            <Text style={styles.closeOrderButtonText}>Fechar conta</Text>
+                            <Text style={styles.closeOrderButtonText}>Pagar</Text>
                         </TouchableOpacity>
                         :
                         null

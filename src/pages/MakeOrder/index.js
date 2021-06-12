@@ -35,14 +35,15 @@ export default class Menu extends Component {
             total: this.state.total,
             items: itemsId
         }
-        const res = await api.post(`/order/${table}`, data, {
+        const res = await api.post(`/order/make/${table}`, data, {
             headers: {
                 "Authorization": "Bearer " + await AsyncStorage.getItem('@token')
             }
         });
 
         this.props.navigation.push('Menu', {
-            menuURL: this.state.url
+            menuURL: this.state.url,
+            orderId: res.data._id
         });
     }
 

@@ -18,6 +18,7 @@ import ForgetPassword from './pages/ForgetPassword';
 import QRReader from './pages/QRReader';
 import Menu from './pages/Menu';
 import MakeOrder from './pages/MakeOrder';
+import CloseOrder from './pages/CloseOrder';
 
 export default class App extends Component {
   render(){
@@ -32,6 +33,7 @@ export default class App extends Component {
           <Stack.Screen name="QRReader" options={{ headerShown: false, title: 'QR Reader' }} component={QRReader} />
           <Stack.Screen name="Menu" options={{ headerShown: false, title: 'Menu' }} component={Menu} />
           <Stack.Screen name="MakeOrder" options={{ headerShown: false, title: 'MakeOrder' }} component={MakeOrder} />
+          <Stack.Screen name="CloseOrder" options={{ headerShown: false, title: 'CloseOrder' }} component={CloseOrder} />
         </Stack.Navigator>
       </NavigationContainer>
     );

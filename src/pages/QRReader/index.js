@@ -7,7 +7,8 @@ import styles from '../../assets/css/styles';
 export default class QRReader extends Component {
   onSuccess = e => {
     this.props.navigation.navigate('Menu', {
-      menuURL: e.data
+      menuURL: e.data,
+      orderId: ""
     });
   };
 
