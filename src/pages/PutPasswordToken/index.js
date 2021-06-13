@@ -26,18 +26,19 @@ const Form = (props) => (
     <Card>
         <Image source={require('../../assets/img/Logo_simple.png')} style={styles.logo} />
         <TextInput
-            value={props.values.email}
-            onChangeText={text => props.setFieldValue('email', text)}
-            name="email"
+            value={props.values.token}
+            keyboardType='numeric'
+            onChangeText={text => props.setFieldValue('token', text)}
+            name="token"
             style={styles.input}
-            placeholder="Digite seu e-mail..."
+            placeholder="Digite seu token..."
             autoCapitalize='none'
         />
-        {props.touched.email && props.errors.email && <Text style={styles.incorretValues}>{props.errors.email}</Text>}
+        {props.touched.token && props.errors.token && <Text style={styles.incorretValues}>{props.errors.token}</Text>}
 
         <TouchableOpacity style={styles.touchOpacity} onPress={props.handleSubmit}>
             <View style={styleLocal.viewButton}>
-                <Text style={styles.textButton}>Solicitar</Text>
+                <Text style={styles.textButton}>Trocar senha</Text>
             </View>
         </TouchableOpacity>
         <OptionsText
@@ -45,36 +46,36 @@ const Form = (props) => (
             onPress={() => props.navigation.navigate('Login')}
         />
         <OptionsText
-            title="Não possui um cadastro?..."
-            onPress={() => props.navigation.navigate('AddUser')}
+            title="Solicitar novo código"
+            onPress={() => props.navigation.navigate('ForgetPassword')}
         />
 
     </Card>
 );
 
 export default withFormik({
-    mapPropsToValues: () => ({ email: '' }),
+    mapPropsToValues: () => ({ token: '',email: AsyncStorage.getItem('@email')}),
 
     validationSchema: Yup.object().shape({
-        email: Yup.string()
-            .email('Digite um e-mail válido')
-            .required('Preencha o campo de e-mail')
+        token: Yup.string()
+            .max(6, 'Insira um token válido')
+            .min(6, 'Insira um token válido')
+            .required('Preencha o campo de token')
     }),
 
     handleSubmit: async (values, formikBag) => {
         try {
-            await AsyncStorage.setItem('@email', values.email);
-            await api.post("/forgot_password", values)
+            await api.post("/verify_token", values)
                 .then(() => {
-                    Alert.alert("Solicitação enviada", "Sua solicitação foi enviada com sucesso, observe seu e-mail que foi cadastrado", [{ text: "OK", onPress: () => formikBag.props.navigation.navigate('PutToken') }]);
+                    Alert.alert("Token correto", "token correto", [{ text: "OK", onPress: () => formikBag.props.navigation.navigate('ChangePassword') }]);
                 })
                 .catch((error) => {
                     console.log(error)
-                    Alert.alert("Solicitação incorreta", "Email não existe", [{ text: "OK" }]);
+                    Alert.alert("Token incorreto", "token incorreto", [{ text: "OK" }]);
                 })
         } catch (error) {
             console.log(error);
-            Alert.alert("Solicitação incorreta", "Ocorreu um erro durante a solicitação tente mais tarde!", [{ text: "OK" }]);
+            Alert.alert("Token incorreto", "token incorreto", [{ text: "OK" }]);
         }
     }
 })(Form);

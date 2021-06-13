@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@babel/preset-env": "^7.14.4",
     "@react-native-async-storage/async-storage": "^1.15.2",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-picker/picker": "^1.16.1",
@@ -17,6 +18,8 @@
     "@react-navigation/stack": "^5.14.4",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "formik": "^2.2.6",
+    "jwt-decode": "^3.1.2",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-camera": "^3.43.3",
