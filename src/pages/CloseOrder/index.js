@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Modal } from 'react-native';
 import MonthPicker from 'react-native-month-year-picker';
-import api from '../../../config/api';
+import api from '../../config/api';
 import styles from '../../assets/css/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -93,7 +93,7 @@ export default class closeOrder extends Component {
             }
         });
 
-        this.props.navigation.push('Menu', {
+        this.props.navigation.push('SearchRestaurant', {
             orderId: this.state.orderId,
             menuURL: this.state.url
         });

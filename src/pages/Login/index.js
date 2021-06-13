@@ -9,18 +9,6 @@ import Card from '../../components/Card';
 import Button from '../../components/Button';
 import OptionsText from '../../components/OptionsText';
 
-export default class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        this.handleLogIn = this.handleLogIn.bind(this);
-    }
-    state = {
-        email: "",
-        password: "",
-        user: []
-    }
 const Form = (props) => (
     <Card>
         <Image source={require('../../assets/img/Logo_simple.png')} style={styles.logo} />
@@ -67,24 +55,9 @@ export default withFormik({
             .email('Digite um e-mail válido')
             .required('Preencha o campo de e-mail'),
         password: Yup.string()
-            .min(6, 'A senha deve ter no mínimo 6 caracteres')
+            .min(2, 'A senha deve ter no mínimo 6 caracteres')
             .required('Preencha o campo de senha'),
     }),
-
-
-    handleLogIn = async () => {
-        const { email, password } = this.state;
-        if (email.length > 0 & password.length > 0) {
-            try {
-                const response = await api.post("/login", { email: email, password: password });
-                await AsyncStorage.setItem('@token', response.data.token);
-                this.props.navigation.navigate('Home');
-            } catch (error) {
-                console.log(error);
-                Alert.alert("Login incorreto", "Login inserido incorreto ou inexistente!", [{ text: "OK" }]);
-            }
-        } else {
-            Alert.alert("Campos faltantes", "É preciso prencher todos os campos!", [{ text: "OK" }]);
     handleSubmit: async (values, formikBag) => {
         try {
             const response = await api.post("/login", values);

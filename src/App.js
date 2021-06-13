@@ -35,9 +35,7 @@ export default class App extends Component {
           <Stack.Screen name="SearchRestaurant" options={{ headerShown: false, title: 'SearchRestaurant' }} component={SearchRestaurant} />
           <Stack.Screen name="QRReader" options={{ headerShown: false, title: 'QR Reader' }} component={QRReader} />
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="AddUser" options={{ headerShown: false }} component={AddUser} />
           <Stack.Screen name="ChangePassword" options={{ headerShown: false }} component={ChangePassword} />
-          <Stack.Screen name="ForgetPassword" options={{ headerShown: false }} component={ForgetPassword} />
           <Stack.Screen name="PutToken" options={{ headerShown: false }} component={PutToken} />
           <Stack.Screen name="Menu" options={{ headerShown: false, title: 'Menu' }} component={Menu} />
           <Stack.Screen name="MakeOrder" options={{ headerShown: false, title: 'MakeOrder' }} component={MakeOrder} />
