@@ -5,7 +5,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default class Home extends Component {
     
     componentDidMount(){
-        if(!AsyncStorage.getItem('@token')){
+        this.isLogIn();
+    }
+
+    isLogIn = async () => {
+        if(!await AsyncStorage.getItem('@token')){
             this.props.navigation.navigate('Login');
         }
     }

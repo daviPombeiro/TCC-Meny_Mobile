@@ -9,6 +9,18 @@ import Card from '../../components/Card';
 import Button from '../../components/Button';
 import OptionsText from '../../components/OptionsText';
 
+export default class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleLogIn = this.handleLogIn.bind(this);
+    }
+    state = {
+        email: "",
+        password: "",
+        user: []
+    }
 const Form = (props) => (
     <Card>
         <Image source={require('../../assets/img/Logo_simple.png')} style={styles.logo} />
@@ -34,15 +46,16 @@ const Form = (props) => (
             onPress={() => props.navigation.navigate('ForgetPassword')}
         />
         <Button
+            style={styles.viewButton}
             onPress={props.handleSubmit}
             title="Login"
         />
         <Button
+            style={styles.viewButton}
             onPress={() => props.navigation.navigate('AddUser')}
             title="Cadastrar"
         />
     </Card>
-
 
 );
 
@@ -59,11 +72,24 @@ export default withFormik({
     }),
 
 
+    handleLogIn = async () => {
+        const { email, password } = this.state;
+        if (email.length > 0 & password.length > 0) {
+            try {
+                const response = await api.post("/login", { email: email, password: password });
+                await AsyncStorage.setItem('@token', response.data.token);
+                this.props.navigation.navigate('Home');
+            } catch (error) {
+                console.log(error);
+                Alert.alert("Login incorreto", "Login inserido incorreto ou inexistente!", [{ text: "OK" }]);
+            }
+        } else {
+            Alert.alert("Campos faltantes", "É preciso prencher todos os campos!", [{ text: "OK" }]);
     handleSubmit: async (values, formikBag) => {
         try {
             const response = await api.post("/login", values);
             await AsyncStorage.setItem('@token', response.data.token);
-            formikBag.props.navigation.navigate('SearchRestaurant');
+            formikBag.props.navigation.navigate('SearchRestaurant')
         } catch (error) {
             console.log(error);
             Alert.alert("Login incorreto", "Login inserido incorreto ou inexistente!", [{ text: "OK" }]);

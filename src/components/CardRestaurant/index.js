@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, Text } from 'react-native';
 import styles from '../../assets/css/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -113,15 +113,15 @@ export default function CardRestaurant(props) {
                             <Text style={styleLocal.category}>7,2 km</Text>
                         </View>
                         <View style={styleLocal.row}>
-                            {props.openHour < new Date().getHours() < props.closeHour ?
+                            {props.closeHour >= new Date().getHours() <= props.openHour ?
                                 <>
                                     <Text style={styleLocal.category, { color: "#2CDE70", fontSize: 11 }}>Aberto</Text>
-                                    <Text style={styleLocal.category}>{"até as " + (props.closeHour) + " h"}</Text>
+                                    <Text style={styleLocal.category}>{"até as "+(props.closeHour)+" h"}</Text>
                                 </>
                                 :
                                 <>
                                     <Text style={styleLocal.category, { color: "#EB2020", fontSize: 11 }}>Fechado</Text>
-                                    <Text style={styleLocal.category}>{"as " + (props.closeHour) + " h"}</Text>
+                                    <Text style={styleLocal.category}>{"as "+(props.closeHour)+" h"}</Text>
                                 </>
                             }
 
@@ -135,9 +135,7 @@ export default function CardRestaurant(props) {
                     </View>
                 </View>
                 <View style={styleLocal.liked}>
-                    <TouchableOpacity style={{width:"100%",height:"100%",alignItems:"flex-end",justifyContent:"flex-start"}} activeOpacity={0.8} onPress={props.onPressLike}>
-                        <Icon name={ props.liked === true? 'heart':'heart-o'} size={30} color="#111e6c" />
-                    </TouchableOpacity>
+                    <Icon name="heart" size={30} color="#111e6c" />
                 </View>
             </View>
         </View>

@@ -15,12 +15,12 @@ import Login from './pages/Login';
 import AddUser from './pages/AddUser';
 import Home from './pages/Home';
 import ForgetPassword from './pages/ForgetPassword';
+
 import QRReader from './pages/QRReader';
 import Menu from './pages/Menu';
 import PutToken from './pages/PutPasswordToken';
 import ChangePassword from './pages/ChangePassword';
 import SearchRestaurant from './pages/SearchRestaurant';
-import Header  from '../src/components/Header';
 
 export default class App extends Component {
   render() {
@@ -28,8 +28,10 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="SearchRestaurant" options={{ headerShown: false,headerStyle: {backgroundColor:'#111e6c' } }} component={SearchRestaurant} />
           <Stack.Screen name="Login" options={{ headerShown: false, title: 'Login' }} component={Login} />
+          <Stack.Screen name="AddUser" options={{ headerShown: false}} component={AddUser} />
+          <Stack.Screen name="ForgetPassword" options={{ headerShown: false}} component={ForgetPassword} />
+          <Stack.Screen name="SearchRestaurant" options={{ headerShown: false, title: 'SearchRestaurant' }} component={SearchRestaurant} />
           <Stack.Screen name="QRReader" options={{ headerShown: false, title: 'QR Reader' }} component={QRReader} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="AddUser" options={{ headerShown: false }} component={AddUser} />

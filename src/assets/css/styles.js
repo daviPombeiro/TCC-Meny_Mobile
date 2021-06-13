@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
-import { StyleSheet, Text, View } from "react-native";
-
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     viewContainer: {
@@ -17,8 +15,8 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       width: '87%',
       height: 'auto',
-      marginTop:'5%',
-      padding:'7%',
+      marginTop:'4%',
+      padding:'5%',
       borderRadius: 10,
       position: "absolute"
     },
@@ -78,9 +76,8 @@ const styles = StyleSheet.create({
       flex: 1,
       fontSize: 18,
       padding: 32,
-      color: 'white'
+      color: '#777'
     },
-
     /*MENU DO RESTAURANTE*/
     menuHeader: {
       width: '100%',
