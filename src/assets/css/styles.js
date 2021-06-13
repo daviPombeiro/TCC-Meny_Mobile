@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
       flex: 1,
       fontSize: 18,
       padding: 32,
-      color: '#777'
+      color: 'white'
     },
 
     /*MENU DO RESTAURANTE*/
