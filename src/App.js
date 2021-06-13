@@ -15,9 +15,10 @@ import Login from './pages/Login';
 import AddUser from './pages/AddUser';
 import Home from './pages/Home';
 import ForgetPassword from './pages/ForgetPassword';
-
 import QRReader from './pages/QRReader';
 import Menu from './pages/Menu';
+import MakeOrder from './pages/MakeOrder';
+import CloseOrder from './pages/CloseOrder';
 import PutToken from './pages/PutPasswordToken';
 import ChangePassword from './pages/ChangePassword';
 import SearchRestaurant from './pages/SearchRestaurant';
@@ -39,6 +40,8 @@ export default class App extends Component {
           <Stack.Screen name="ForgetPassword" options={{ headerShown: false }} component={ForgetPassword} />
           <Stack.Screen name="PutToken" options={{ headerShown: false }} component={PutToken} />
           <Stack.Screen name="Menu" options={{ headerShown: false, title: 'Menu' }} component={Menu} />
+          <Stack.Screen name="MakeOrder" options={{ headerShown: false, title: 'MakeOrder' }} component={MakeOrder} />
+          <Stack.Screen name="CloseOrder" options={{ headerShown: false, title: 'CloseOrder' }} component={CloseOrder} />
         </Stack.Navigator>
       </NavigationContainer>
     );
