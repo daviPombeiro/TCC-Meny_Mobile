@@ -55,7 +55,6 @@ export default class SearchRestaurant extends Component {
     }
 
 
-
     render() {
         const { filter = "", restaurants = [], weekDay } = this.state;
         return (

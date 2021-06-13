@@ -1,10 +1,4 @@
-<<<<<<< Updated upstream
-import { StyleSheet, Text, View } from "react-native";
-=======
-/* eslint-disable prettier/prettier */
 import { StyleSheet } from "react-native";
->>>>>>> Stashed changes
-
 
 const styles = StyleSheet.create({
     viewContainer: {
@@ -71,8 +65,6 @@ const styles = StyleSheet.create({
     optionsText:{
       color: '#111e6c',
       marginTop: 5,
-<<<<<<< Updated upstream
-=======
     },
     incorretValues: {
       color: '#cc0000',
@@ -122,7 +114,6 @@ const styles = StyleSheet.create({
     menuItemTitle: {
       fontSize: 18,
       fontWeight: "bold"
->>>>>>> Stashed changes
     }
   });
   

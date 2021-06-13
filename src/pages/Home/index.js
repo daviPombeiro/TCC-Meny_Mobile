@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class Home extends Component {
     
-<<<<<<< Updated upstream
-=======
     componentDidMount(){
         this.isLogIn();
     }
@@ -15,7 +14,6 @@ export default class Home extends Component {
         }
     }
 
->>>>>>> Stashed changes
     render() {
         return (
             <View>
