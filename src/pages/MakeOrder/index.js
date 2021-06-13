@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import api from '../../../config/api';
+import api from '../../config/api';
 import styles from '../../assets/css/styles';
 
 export default class Menu extends Component {
