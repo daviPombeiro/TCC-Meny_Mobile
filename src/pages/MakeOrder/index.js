@@ -13,6 +13,7 @@ export default class Menu extends Component {
     state = {
         items: this.props.route.params.selectedItems,
         restaurantName: this.props.route.params.restaurantName,
+        orderId: this.props.route.params.orderId,
         url: this.props.route.params.url,
         total: 0
     }
@@ -30,12 +31,12 @@ export default class Menu extends Component {
             return item._id;
         });
 
-        let table = this.state.url.split("/").pop();
+        let orderId = this.state.orderId;
         let data = {
             total: this.state.total,
             items: itemsId
         }
-        const res = await api.post(`/order/make/${table}`, data, {
+        const res = await api.post(`/order/make/${orderId}`, data, {
             headers: {
                 "Authorization": "Bearer " + await AsyncStorage.getItem('@token')
             }

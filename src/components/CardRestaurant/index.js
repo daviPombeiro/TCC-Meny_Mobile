@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import styles from '../../assets/css/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -135,7 +135,9 @@ export default function CardRestaurant(props) {
                     </View>
                 </View>
                 <View style={styleLocal.liked}>
-                    <Icon name="heart" size={30} color="#111e6c" />
+                    <TouchableOpacity style={{width:"100%",height:"100%",alignItems:"flex-end",justifyContent:"flex-start"}} activeOpacity={0.8} onPress={props.onPressLike}>
+                        <Icon name={ props.liked === true? 'heart':'heart-o'} size={30} color="#111e6c" />
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>

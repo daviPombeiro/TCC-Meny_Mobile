@@ -71,6 +71,10 @@ export default class closeOrder extends Component {
                 this.setState({cardShow: false, closeOrderShow: true});
             } else {
                 this.payOrder();
+                this.props.navigation.push('Menu', {
+                    orderId: this.state.orderId,
+                    menuURL: this.state.url
+                });
             }
         } else {
             this.setState({cardShow: false, cardEmptyShow: true});
@@ -92,11 +96,6 @@ export default class closeOrder extends Component {
                 "Authorization": "Bearer " + await AsyncStorage.getItem('@token')
             }
         });
-
-        this.props.navigation.push('SearchRestaurant', {
-            orderId: this.state.orderId,
-            menuURL: this.state.url
-        });
     }
 
     async closeOrder() {
@@ -115,7 +114,10 @@ export default class closeOrder extends Component {
             }
         });
 
-        this.props.navigation.push('Home');
+        this.props.navigation.push('SearchRestaurant', {
+            orderId: this.state.orderId,
+            menuURL: this.state.url
+        });
     }
 
     render(){

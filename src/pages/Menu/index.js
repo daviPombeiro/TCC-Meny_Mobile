@@ -61,7 +61,8 @@ export default class Menu extends Component {
         this.props.navigation.push('MakeOrder', {
             selectedItems: items,
             restaurantName: this.state.name,
-            url: this.state.url
+            url: this.state.url,
+            orderId: this.state.orderId
         });
     }
 
